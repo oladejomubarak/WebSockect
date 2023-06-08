@@ -16,7 +16,13 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests((auth) -> auth
                 .requestMatchers("/", "/ws/**")
-                .permitAll().anyRequest().authenticated()).formLogin(withDefaults());
+                .permitAll().anyRequest().authenticated())
+                .formLogin(withDefaults()).logout((logout) ->
+        logout.deleteCookies("remove")
+                .invalidateHttpSession(false)
+                .logoutUrl("/custom-logout")
+                .logoutSuccessUrl("/logout-success")
+  			);
         return http.build();
     }
 }
