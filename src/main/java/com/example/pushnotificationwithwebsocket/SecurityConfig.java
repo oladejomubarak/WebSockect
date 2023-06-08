@@ -19,9 +19,9 @@ public class SecurityConfig {
                 .permitAll().anyRequest().authenticated())
                 .formLogin(withDefaults()).logout((logout) ->
         logout.deleteCookies("remove")
-                .invalidateHttpSession(false)
-                .logoutUrl("/custom-logout")
-                .logoutSuccessUrl("/logout-success")
+//                .invalidateHttpSession(false)
+//                .logoutUrl("/")
+                .logoutSuccessUrl("/")
   			);
         return http.build();
     }
